@@ -2,6 +2,7 @@
 
 import boto3
 import argparse
+import sys
 
 region = {
     'ap2': 'ap-northeast-1',
@@ -18,6 +19,9 @@ parser = argparse.ArgumentParser(description='Get you some instanceID info')
 parser.add_argument(
     'name', nargs='?', const=1, help='eg: tagserve01ea1, lb02bs1, ops99fu2'
     )
+if len(sys.argv) == 1:
+    parser.print_help(sys.stderr)
+    sys.exit(1)
 args = parser.parse_args()
 
 
