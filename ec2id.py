@@ -25,7 +25,7 @@ if len(sys.argv) == 1:
 args = parser.parse_args()
 
 
-def list_instances_by_tag_value(tagkey, tagvalue):
+def get_instance_id(tagkey, tagvalue):
     ec2 = boto3.client('ec2', region_name=region.get(args.name[-3:]))
     response = ec2.describe_instances(
         Filters=[
@@ -42,6 +42,6 @@ def list_instances_by_tag_value(tagkey, tagvalue):
     return instancelist
 
 
-results = list_instances_by_tag_value("Name", args.name)
+results = get_instance_id("Name", args.name)
 
 print(' '.join(results))
